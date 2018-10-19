@@ -1,0 +1,11 @@
+# IDE/project files
+.idea
+*/.idea
+.pydevproject
+.project
+.vscode
+
+# Cache
+__pycache__
+*.pyc
+*/.ipynb_checkpoints/

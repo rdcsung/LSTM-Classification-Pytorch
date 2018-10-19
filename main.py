@@ -107,12 +107,14 @@ if __name__=='__main__':
 
             # calc training acc
             _, predicted = torch.max(output.data, 1)
+
             total_acc += (predicted == train_labels).sum()
             total += len(train_labels)
-            total_loss += loss.data[0]
+            total_loss += loss.item()
 
         train_loss_.append(total_loss / total)
-        train_acc_.append(total_acc / total)
+        train_acc_.append(total_acc.item() / total)
+
         ## testing epoch
         total_acc = 0.0
         total_loss = 0.0
@@ -135,9 +137,9 @@ if __name__=='__main__':
             _, predicted = torch.max(output.data, 1)
             total_acc += (predicted == test_labels).sum()
             total += len(test_labels)
-            total_loss += loss.data[0]
+            total_loss += loss.item()
         test_loss_.append(total_loss / total)
-        test_acc_.append(total_acc / total)
+        test_acc_.append(total_acc.item() / total)
 
         print('[Epoch: %3d/%3d] Training Loss: %.3f, Testing Loss: %.3f, Training Acc: %.3f, Testing Acc: %.3f'
               % (epoch, epochs, train_loss_[epoch], test_loss_[epoch], train_acc_[epoch], test_acc_[epoch]))
